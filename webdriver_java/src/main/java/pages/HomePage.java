@@ -7,93 +7,37 @@ public class HomePage {
 
     private WebDriver driver;
 
+    private By signupButton = By.xpath("//button[text()=\" Sign up \"]");
+    private By firstNameField = By.cssSelector("input[name='firstName']");
+    private By lastNameField = By.cssSelector("input[name='lastName']");
+    private By emailField = By.cssSelector("input[name='emailOrphone']");
+    private By phoneField = By.cssSelector("input.phone-number-input");
+    private By passwordField = By.cssSelector("input[name='password']");
+    private By agreeToPolicyCheckbox = By.cssSelector("svg.empty");
+    private By createAccountButton = By.xpath("//div[@class=\"auth-body\"]//button[text()=\" Create account \"]");
+    private By otpMessage = By.xpath("//h3[text()=\"Please enter the OTP to verify your phone number  \"]");
+    public void clickSignupButton() {
+        driver.findElement(signupButton).click();
+    }
+    public void setFirstName(String firstName) { driver.findElement(firstNameField).sendKeys(firstName); }
+    public void setLastName(String lastName) { driver.findElement(lastNameField).sendKeys(lastName); }
+    public void setEmail(String email) { driver.findElement(emailField).sendKeys(email); }
+    public void setPhone(String phone) { driver.findElement(phoneField).sendKeys(phone); }
+    public void setPassword(String password) { driver.findElement(passwordField).sendKeys(password); }
+    public void clickAgreeToPolicy() {
+        driver.findElement(agreeToPolicyCheckbox).click();
+    }
+    public void clickCreateAccountButton() {
+        driver.findElement(createAccountButton).click();
+    }
+
+    public String getOTPMessageText() {
+        var text = driver.findElement(otpMessage).getText();
+        return text;
+    }
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
-
-    public LoginPage clickFormAuthentication(){
-        clickLink("Form Authentication");
-        return new LoginPage(driver);
-    }
-
-    public DropdownPage clickDropDown(){
-        clickLink("Dropdown");
-        return new DropdownPage(driver);
-    }
-
-    public HoversPage clickHovers(){
-        clickLink("Hovers");
-        return new HoversPage(driver);
-    }
-
-    public KeyPressesPage clickKeyPresses(){
-        clickLink("Key Presses");
-        return new KeyPressesPage(driver);
-    }
-
-    public AlertsPage clickJavaScriptAlerts(){
-        clickLink("JavaScript Alerts");
-        return new AlertsPage(driver);
-    }
-
-    public FileUploadPage clickFileUpload(){
-        clickLink("File Upload");
-        return new FileUploadPage(driver);
-    }
-
-    public WysiwygEditorPage clickWysiwygEditor(){
-        clickLink("WYSIWYG Editor");
-        return new WysiwygEditorPage(driver);
-    }
-
-    public LargeAndDeepDomPage clickLargeAndDeepDom(){
-        clickLink("Large & Deep DOM");
-        return new LargeAndDeepDomPage(driver);
-    }
-
-    public InfiniteScrollPage clickInfiniteScroll(){
-        clickLink("Infinite Scroll");
-        return new InfiniteScrollPage(driver);
-    }
-
-    public DynamicLoadingPage clickDynamicLoading(){
-        clickLink("Dynamic Loading");
-        return new DynamicLoadingPage(driver);
-    }
-
-    public MultipleWindowsPage clickMultipleWindows(){
-        clickLink("Multiple Windows");
-        return new MultipleWindowsPage(driver);
-    }
-
-    private void clickLink(String linkText){
-        driver.findElement(By.linkText(linkText)).click();
-    }
-
-    /*=====================================
-       METHODS FOR INDIVIDUAL EXERCISES
-     ======================================*/
-
-    public ForgotPasswordPage clickForgotPassword(){
-        clickLink("Forgot Password");
-        return new ForgotPasswordPage(driver);
-    }
-
-    public HorizontalSliderPage clickHorizonalSlider(){
-        clickLink("Horizontal Slider");
-        return new HorizontalSliderPage(driver);
-    }
-
-    public ContextMenuPage clickContextMenu(){
-        clickLink("Context Menu");
-        return new ContextMenuPage(driver);
-    }
-
-    public FramesPage clickFramesPage(){
-        clickLink("Frames");
-        return new FramesPage(driver);
-    }
-
 
 
 
